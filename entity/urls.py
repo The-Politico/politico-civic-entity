@@ -1,7 +1,13 @@
-from django.urls import path
+from django.urls import include, path
+from rest_framework.routers import DefaultRouter
 
-from .views import Home
+from .viewsets import OrganizationViewSet, PersonViewSet
+
+router = DefaultRouter()
+router.register(r'people', PersonViewSet)
+router.register(r'organizations', OrganizationViewSet)
+
 
 urlpatterns = [
-    path('', Home.as_view(), name='entity-home'),
+    path('api/', include(router.urls)),
 ]

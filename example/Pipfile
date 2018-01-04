@@ -16,6 +16,8 @@ django = ">=2.0"
 djangorestframework = "*"
 "dj-database-url" = "*"
 "psycopg2" = "*"
+"Pillow" = "*"
+core = {git = "ssh://git@github.com/The-Politico/politico-civic-core", editable = true}
 "entity" = {path = "./..", editable = true}
 
 

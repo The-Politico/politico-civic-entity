@@ -21,9 +21,15 @@ setup(
     ],
     keywords='',
 
-    packages=find_packages(exclude=['docs', 'tests']),
+    packages=find_packages(exclude=['docs', 'tests', 'example']),
 
-    install_requires=[],
+    install_requires=[
+        'pycountry',
+        'us',
+        'django-uuslug',
+        'djangorestframework',
+        'Pillow',
+    ],
 
     extras_require={
         'test': ['pytest'],
