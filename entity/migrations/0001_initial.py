@@ -88,7 +88,7 @@ class Migration(migrations.Migration):
                 ('death_date', models.DateField(blank=True, null=True)),
                 ('summary', models.CharField(blank=True, help_text='A one-line biographical summary.', max_length=500, null=True)),
                 ('biography', models.TextField(blank=True, help_text='A longer-form biography.', null=True)),
-                ('links', django.contrib.postgres.fields.ArrayField(base_field=models.URLField(), blank=True, help_text='External web links.', size=None)),
+                ('links', django.contrib.postgres.fields.ArrayField(base_field=models.URLField(), blank=True, null=True, help_text='External web links.', size=None)),
             ],
             options={
                 'abstract': False,

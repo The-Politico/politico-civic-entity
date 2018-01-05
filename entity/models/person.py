@@ -54,7 +54,7 @@ class Person(AuditTrackBase):
         null=True, blank=True, help_text="A longer-form biography.")
 
     links = ArrayField(
-        models.URLField(), blank=True,
+        models.URLField(), blank=True, null=True,
         help_text="External web links, comma-separated.")
 
     def save(self, *args, **kwargs):
