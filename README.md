@@ -1,13 +1,13 @@
 ![POLITICO](https://rawgithub.com/The-Politico/src/master/images/logo/badge.png)
 
-# entity
+# django-politico-civic-entity
 
 ### Quickstart
 
 1. Install the app.
 
   ```
-  $ pip install entity
+  $ pip install django-politico-civic-entity
   ```
 
 2. Add the app to your Django project and configure settings.
@@ -18,18 +18,14 @@
       'rest_framework',
       'entity',
   ]
-
-  #########################
-  # entity settings
-
-  ENTITY_SECRET_KEY = ''
-  ENTITY_AWS_ACCESS_KEY_ID = ''
-  ENTITY_AWS_SECRET_ACCESS_KEY = ''
-  ENTITY_AWS_REGION = ''
-  ENTITY_AWS_S3_BUCKET = ''
-  ENTITY_CLOUDFRONT_ALTERNATE_DOMAIN = ''
-  ENTITY_S3_UPLOAD_ROOT = ''
   ```
+
+3. Migrate the database
+
+  ```
+  $ python manage.py migrate entity
+  ```
+
 
 ### Developing
 
