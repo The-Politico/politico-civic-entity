@@ -31,16 +31,6 @@ class PersonSerializer(serializers.ModelSerializer):
             'summary',
             'biography',
             'links',
-        )
-
-
-class SlimPersonSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Person
-        fields = (
-            'id',
-            'first_name',
-            'middle_name',
-            'last_name',
-            'suffix',
+            'created',
+            'updated',
         )

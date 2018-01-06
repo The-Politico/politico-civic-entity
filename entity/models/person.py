@@ -1,13 +1,12 @@
 import uuid
 
-from core.models import AuditTrackBase
 from django.contrib.postgres.fields import ArrayField, JSONField
 from django.db import models
 from entity.fields import CountryField, GenderField, RaceField, StateField
 from uuslug import uuslug
 
 
-class Person(AuditTrackBase):
+class Person(models.Model):
     """A real human being.🎵
 
     Generally follows the Popolo spec:
@@ -56,6 +55,9 @@ class Person(AuditTrackBase):
     links = ArrayField(
         models.URLField(), blank=True, null=True,
         help_text="External web links, comma-separated.")
+
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    updated = models.DateTimeField(auto_now=True, editable=False)
 
     def save(self, *args, **kwargs):
         """

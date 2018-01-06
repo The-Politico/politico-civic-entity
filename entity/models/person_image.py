@@ -1,10 +1,9 @@
 import os
 import uuid
 
-from core.aws import StorageService
-from core.models import AuditTrackBase
 from django.db import models
 from django.utils.html import format_html
+from entity.utils.aws import StorageService
 
 from .image_tag import ImageTag
 from .person import Person
@@ -22,7 +21,7 @@ def person_image_path(instance, filename):
     )
 
 
-class PersonImage(AuditTrackBase):
+class PersonImage(models.Model):
     """
     Image attached to a person, which can be serialized
     by a tag.
@@ -37,6 +36,9 @@ class PersonImage(AuditTrackBase):
         upload_to=person_image_path,
         storage=StorageService()
     )
+
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    updated = models.DateTimeField(auto_now=True, editable=False)
 
     def preview(self):
         return format_html(

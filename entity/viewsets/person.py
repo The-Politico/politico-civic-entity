@@ -1,15 +1,9 @@
 from entity.models import Person
-from entity.serializers import PersonSerializer, SlimPersonSerializer
-from rest_framework import viewsets
-from rest_framework.permissions import IsAdminUser
+from entity.serializers import PersonSerializer
+
+from .base import BaseViewSet
 
 
-class PersonViewSet(viewsets.ModelViewSet):
+class PersonViewSet(BaseViewSet):
     queryset = Person.objects.all()
-    permission_classes = (IsAdminUser,)
-
-    def get_serializer_class(self):
-        if self.action == 'list':
-            return SlimPersonSerializer
-        else:
-            return PersonSerializer
+    serializer_class = PersonSerializer

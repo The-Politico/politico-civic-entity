@@ -30,6 +30,8 @@ setup(
         'us',
         'django-uuslug',
         'djangorestframework',
+        'django-storages',
+        'boto3',
         'Pillow',
     ],
 

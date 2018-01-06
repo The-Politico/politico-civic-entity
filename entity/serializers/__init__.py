@@ -1,3 +1,5 @@
 # flake8: noqa
-from .person import PersonSerializer, SlimPersonSerializer
-from .organization import OrganizationSerializer, SlimOrganizationSerializer
+from .image_tag import ImageTagSerializer
+from .organization_classification import OrganizationClassificationSerializer
+from .organization import OrganizationSerializer
+from .person import PersonSerializer

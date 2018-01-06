@@ -10,7 +10,7 @@
   $ pip install django-politico-civic-entity
   ```
 
-2. Add the app to your Django project and configure settings.
+2. Add the app to your Django project settings and configure app settings.
 
   ```python
   INSTALLED_APPS = [
@@ -18,6 +18,20 @@
       'rest_framework',
       'entity',
   ]
+
+  #########################
+  # entity settings
+
+  ENTITY_AWS_ACCESS_KEY_ID = ''
+  ENTITY_AWS_SECRET_ACCESS_KEY = ''
+  ENTITY_AWS_S3_BUCKET = ''
+  ENTITY_CLOUDFRONT_ALTERNATE_DOMAIN = ''
+  ENTITY_S3_UPLOAD_ROOT = 'uploads/entity' # default
+  ENTITY_AWS_S3_ACL = 'public-read' # default
+  ENTITY_API_AUTHENTICATION_CLASS = 'rest_framework.authentication.BasicAuthentication' # default
+  ENTITY_API_PERMISSION_CLASS = 'rest_framework.permissions.IsAdminUser' # default
+  ENTITY_API_PAGINATION_CLASS = 'geography.pagination.ResultsPagination' # default
+
   ```
 
 3. Migrate the database
@@ -31,24 +45,12 @@
 
 ##### Running a development server
 
-Developing python files? Move into example directory and run the development server with pipenv.
+Move into the example directory, install dependencies and run the development server with pipenv.
 
   ```
   $ cd example
+  $ pipenv install
   $ pipenv run python manage.py runserver
-  ```
-
-Developing static assets? Move into the pluggable app's staticapp directory and start the node development server, which will automatically proxy Django's development server.
-
-  ```
-  $ cd entity/staticapp
-  $ gulp
-  ```
-
-Want to not worry about it? Use the shortcut make command.
-
-  ```
-  $ make dev
   ```
 
 ##### Setting up a PostgreSQL database
@@ -59,7 +61,7 @@ Want to not worry about it? Use the shortcut make command.
   $ make database
   ```
 
-2. Add a connection URL to the `.env` file.
+2. Add a connection URL to `example/.env`.
 
   ```
   DATABASE_URL="postgres://localhost:5432/entity"

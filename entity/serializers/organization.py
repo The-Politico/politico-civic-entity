@@ -27,13 +27,6 @@ class OrganizationSerializer(serializers.ModelSerializer):
             'summary',
             'description',
             'links',
-        )
-
-
-class SlimOrganizationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Organization
-        fields = (
-            'id',
-            'name',
+            'created',
+            'updated',
         )
