@@ -2,6 +2,8 @@
 
 # django-politico-civic-entity
 
+Manage political people and organizations, the POLITICO way.
+
 ### Quickstart
 
 1. Install the app.
