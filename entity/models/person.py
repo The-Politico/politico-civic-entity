@@ -89,4 +89,4 @@ class Person(models.Model):
         verbose_name_plural = "People"
 
     def __str__(self):
-        return self.uid
+        return self.full_name
