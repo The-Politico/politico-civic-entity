@@ -49,8 +49,8 @@ class Person(models.Model):
     summary = models.CharField(
         max_length=500,
         null=True, blank=True, help_text="A one-line biographical summary.")
-    biography = models.TextField(
-        null=True, blank=True, help_text="A longer-form biography.")
+    description = models.TextField(
+        null=True, blank=True, help_text="A longer-form description.")
 
     links = ArrayField(
         models.URLField(), blank=True, null=True,

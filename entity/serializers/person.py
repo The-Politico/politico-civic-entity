@@ -29,7 +29,7 @@ class PersonSerializer(serializers.ModelSerializer):
             'death_date',
             'images',
             'summary',
-            'biography',
+            'description',
             'links',
             'created',
             'updated',

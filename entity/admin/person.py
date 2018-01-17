@@ -29,7 +29,7 @@ class PersonAdmin(admin.ModelAdmin):
             'fields': ('birth_date', 'death_date',),
         }),
         ('Descriptions', {
-            'fields': ('summary', 'biography', 'identifiers', 'links'),
+            'fields': ('summary', 'description', 'identifiers', 'links'),
         }),
         ('Record locators', {
             'fields': ('id', 'uid', 'slug',),
