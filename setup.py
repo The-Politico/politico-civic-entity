@@ -1,10 +1,10 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='django-politico-civic-entity',
-    version='0.0.0-alpha',
+    name='politico-civic-entity',
+    version='0.1.0',
     description='',
-    url='https://github.com/The-Politico/django-politico-civic-entity',
+    url='https://github.com/The-Politico/politico-civic-entity',
     author='POLITICO interactive news',
     author_email='interactives@politico.com',
     license='MIT',
@@ -28,11 +28,13 @@ setup(
     install_requires=[
         'pycountry',
         'us',
+        'django',
         'django-uuslug',
         'djangorestframework',
         'django-storages',
         'boto3',
         'Pillow',
+        'psycopg2'
     ],
 
     extras_require={
