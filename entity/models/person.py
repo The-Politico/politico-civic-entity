@@ -29,7 +29,7 @@ class Person(models.Model):
     )
 
     last_name = models.CharField(max_length=200)
-    first_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100, null=True, blank=True)
     middle_name = models.CharField(max_length=100, null=True, blank=True)
     suffix = models.CharField(max_length=10, null=True, blank=True)
     full_name = models.CharField(max_length=500, null=True, blank=True)
