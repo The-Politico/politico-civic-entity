@@ -40,3 +40,6 @@ class PersonAdmin(admin.ModelAdmin):
         'uid',
         'slug',
     )
+
+    search_fields = ('first_name', 'last_name')
+    ordering = ('last_name', )

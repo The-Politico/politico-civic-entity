@@ -81,4 +81,4 @@ class Organization(models.Model):
         super(Organization, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.uid
+        return self.name

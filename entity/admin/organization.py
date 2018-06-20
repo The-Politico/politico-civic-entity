@@ -24,7 +24,7 @@ class OrganizationAdmin(admin.ModelAdmin):
                 'dissolution_date',
             ),
         }),
-        ('Heirarchy', {
+        ('Hierarchy', {
             'fields': ('parent',),
         }),
         ('Descriptions', {
@@ -39,3 +39,6 @@ class OrganizationAdmin(admin.ModelAdmin):
         'uid',
         'slug',
     )
+
+    search_fields = ('name', )
+    ordering = ('name', )
