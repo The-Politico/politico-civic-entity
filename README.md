@@ -9,7 +9,7 @@ Manage political people and organizations, the POLITICO way.
 1. Install the app.
 
   ```
-  $ pip install django-politico-civic-entity
+  $ pip install politico-civic-entity
   ```
 
 2. Add the app to your Django project settings.
