@@ -8,6 +8,17 @@ from .image_tag import ImageTag
 from .person import Person
 
 
+# Unfortunately, this is only around so the old migrations don't break
+def person_image_path(instance, filename):
+    return os.path.join(
+        "cdn/images/people",
+        instance.person.slug,
+        "{}-{}{}".format(
+            instance.tag, uuid.uuid4().hex[:6], os.path.splitext(filename)[1]
+        ),
+    )
+
+
 class PersonImage(models.Model):
     """
     Image attached to a person, which can be serialized
