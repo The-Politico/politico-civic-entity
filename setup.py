@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="politico-civic-entity",
-    version="0.3.0",
+    version="0.3.1",
     description="",
     url="https://github.com/The-Politico/politico-civic-entity",
     author="POLITICO interactive news",
