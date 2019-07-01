@@ -1,7 +1,7 @@
 # flake8: noqa
-from .image_tag import ImageTag
-from .organization_classification import OrganizationClassification
-from .organization_image import OrganizationImage
-from .organization import Organization
-from .person_image import PersonImage
-from .person import Person
+from entity.models.image_tag import ImageTag
+from entity.models.organization_classification import OrganizationClassification
+from entity.models.organization_image import OrganizationImage
+from entity.models.organization import Organization
+from entity.models.person_image import PersonImage
+from entity.models.person import Person
