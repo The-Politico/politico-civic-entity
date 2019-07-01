@@ -1,12 +1,19 @@
+# Imports from python.
 import os
 import uuid
 
+
+# Imports from Django.
 from django.db import models
 from django.utils.html import format_html
-from entity.utils.aws import StorageService
 
-from .image_tag import ImageTag
-from .organization import Organization
+
+# Imports from politico-civic-entity.
+from entity.models.base import CivicBaseModel
+# from entity.models.base import NaturalKeyMixin
+from entity.models.image_tag import ImageTag
+from entity.models.organization import Organization
+from entity.utils.aws import StorageService
 
 
 def person_image_path(instance, filename):
@@ -21,24 +28,31 @@ def person_image_path(instance, filename):
     )
 
 
-class OrganizationImage(models.Model):
+class OrganizationImage(CivicBaseModel):
     """
     Image attached to a person, which can be serialized
     by a tag.
     """
+    # NOTE: Subclassing CivicBaseModel would replace standard PK with a UUID.
+
     organization = models.ForeignKey(
-        Organization, related_name='images', on_delete=models.PROTECT)
+        Organization,
+        related_name='images',
+        on_delete=models.PROTECT
+    )
     tag = models.ForeignKey(
-        ImageTag, related_name="+",
+        ImageTag,
+        related_name="+",
         on_delete=models.PROTECT,
-        help_text="Used to serialize images.")
+        help_text="Used to serialize images."
+    )
     image = models.ImageField(
         upload_to=person_image_path,
         storage=StorageService()
     )
 
-    created = models.DateTimeField(auto_now_add=True, editable=False)
-    updated = models.DateTimeField(auto_now=True, editable=False)
+    # created = models.DateTimeField(auto_now_add=True, editable=False)
+    # updated = models.DateTimeField(auto_now=True, editable=False)
 
     def preview(self):
         return format_html(

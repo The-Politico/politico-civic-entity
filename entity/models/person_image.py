@@ -1,11 +1,18 @@
+# Imports from python.
 import os
 import uuid
 
+
+# Imports from Django.
 from django.db import models
 from django.utils.html import format_html
 
-from .image_tag import ImageTag
-from .person import Person
+
+# Imports from politico-civic-entity.
+from entity.models.base import CivicBaseModel
+# from entity.models.base import NaturalKeyMixin
+from entity.models.image_tag import ImageTag
+from entity.models.person import Person
 
 
 # Unfortunately, this is only around so the old migrations don't break
@@ -14,19 +21,24 @@ def person_image_path(instance, filename):
         "cdn/images/people",
         instance.person.slug,
         "{}-{}{}".format(
-            instance.tag, uuid.uuid4().hex[:6], os.path.splitext(filename)[1]
+            instance.tag,
+            uuid.uuid4().hex[:6],
+            os.path.splitext(filename)[1]
         ),
     )
 
 
-class PersonImage(models.Model):
+class PersonImage(CivicBaseModel):
     """
     Image attached to a person, which can be serialized
     by a tag.
     """
+    # NOTE: Subclassing CivicBaseModel would replace standard PK with a UUID.
 
     person = models.ForeignKey(
-        Person, related_name="images", on_delete=models.PROTECT
+        Person,
+        related_name="images",
+        on_delete=models.PROTECT
     )
     tag = models.ForeignKey(
         ImageTag,
@@ -36,8 +48,8 @@ class PersonImage(models.Model):
     )
     image = models.URLField()
 
-    created = models.DateTimeField(auto_now_add=True, editable=False)
-    updated = models.DateTimeField(auto_now=True, editable=False)
+    # created = models.DateTimeField(auto_now_add=True, editable=False)
+    # updated = models.DateTimeField(auto_now=True, editable=False)
 
     def preview(self):
         return format_html(
