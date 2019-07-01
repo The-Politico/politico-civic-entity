@@ -1,26 +1,20 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [requires]
-
 python_version = "3.6"
 
-
 [packages]
-
 pytest = "*"
 "flake8" = "*"
 django = ">=2.0"
 djangorestframework = "*"
 dj-database-url = "*"
 "psycopg2" = "*"
-entity = {path = "./..", editable = true}
+entity = {path = "./..",editable = true}
 "boto3" = "*"
 
-
 [dev-packages]
-
+ipython = "*"
