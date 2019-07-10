@@ -57,6 +57,7 @@ setup(
         "boto3",
         "Pillow",
         "psycopg2",
+        "politico-civic-utils",
     ],
     extras_require={"test": ["pytest"]},
 )
