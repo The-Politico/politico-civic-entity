@@ -2,26 +2,26 @@
 # import uuid
 
 # Imports from Django.
-from django.contrib.postgres.fields import ArrayField, JSONField
+from django.contrib.postgres.fields import ArrayField
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 
 
 # Imports from other dependencies.
-from uuslug import uuslug
+from civic_utils.models import CivicBaseModel
+from civic_utils.models import CommonIdentifiersMixin
+from civic_utils.models import UUIDMixin
 
 
 # Imports from politico-civic-entity.
 from entity.fields import CountryField
-from entity.models.base import CivicBaseModel
-from entity.models.base import CommonIdentifiersMixin
-from entity.models.base import NaturalKeyMixin
 from entity.models.organization_classification import (
     OrganizationClassification
 )
 
 
-class Organization(CommonIdentifiersMixin, NaturalKeyMixin, CivicBaseModel):
-    """An org.
+class Organization(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
+    """An organization.
 
     Generally follows the Popolo spec:
     http://www.popoloproject.com/specs/organization.html
@@ -29,22 +29,7 @@ class Organization(CommonIdentifiersMixin, NaturalKeyMixin, CivicBaseModel):
     natural_key_fields = ['uid']
     slug_prefix = 'organization'
     slug_base_field = 'name'
-
-    # id = models.UUIDField(
-    #     primary_key=True,
-    #     default=uuid.uuid4,
-    #     editable=False
-    # )
-
-    # uid = models.CharField(
-    #     max_length=500,
-    #     editable=False,
-    #     blank=True
-    # )
-
-    # slug = models.SlugField(
-    #     blank=True, max_length=100, unique=True, editable=False
-    # )
+    default_serializer = 'entity.serializers.OrganizationSerializer'
 
     name = models.CharField(max_length=500)
 
@@ -89,23 +74,10 @@ class Organization(CommonIdentifiersMixin, NaturalKeyMixin, CivicBaseModel):
         null=True,
         help_text="External web links, comma-separated.")
 
-    # created = models.DateTimeField(auto_now_add=True, editable=False)
-    # updated = models.DateTimeField(auto_now=True, editable=False)
-
     def save(self, *args, **kwargs):
         """
         **uid**: :code:`person:{slug}`
         """
-
-        # self.slug = uuslug(
-        #     self.name,
-        #     instance=self,
-        #     max_length=100,
-        #     separator='-',
-        #     start_no=2
-        # )
-        # if not self.uid:
-        #     self.uid = 'organization:{}'.format(self.slug)
         self.generate_common_identifiers()
 
         super(Organization, self).save(*args, **kwargs)

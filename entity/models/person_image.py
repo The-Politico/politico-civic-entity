@@ -8,9 +8,12 @@ from django.db import models
 from django.utils.html import format_html
 
 
+# Imports from other dependencies.
+from civic_utils.models import CivicBaseModel
+from civic_utils.models import UUIDMixin
+
+
 # Imports from politico-civic-entity.
-from entity.models.base import CivicBaseModel
-# from entity.models.base import NaturalKeyMixin
 from entity.models.image_tag import ImageTag
 from entity.models.person import Person
 
@@ -28,12 +31,15 @@ def person_image_path(instance, filename):
     )
 
 
-class PersonImage(CivicBaseModel):
+class PersonImage(UUIDMixin, CivicBaseModel):
+    """An image that has been linked to a person and a tag type.
+
+    Can be serialized by a tag.
     """
-    Image attached to a person, which can be serialized
-    by a tag.
-    """
-    # NOTE: Subclassing CivicBaseModel would replace standard PK with a UUID.
+    natural_key_fields = ['person', 'tag']
+    default_serializer = 'entity.serializers.PersonImageSerializer'
+
+    # NOTE: Using UUIDMixin replaced the standard PK with a UUID.
 
     person = models.ForeignKey(
         Person,

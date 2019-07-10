@@ -2,11 +2,18 @@
 from django.db import models
 
 
-class ImageTag(models.Model):
+# Imports from other dependencies.
+from civic_utils.models import CivicBaseModel
+
+
+class ImageTag(CivicBaseModel):
     """
     Tags represent a type of image, which is used to serialize it.
     """
-    name = models.SlugField()
+    default_serializer = 'entity.serializers.ImageTagSerializer'
+    natural_key_fields = ['name']
+
+    name = models.SlugField(unique=True)
 
     def __str__(self):
         return self.name

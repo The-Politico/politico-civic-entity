@@ -3,22 +3,25 @@
 
 
 # Imports from Django.
-from django.contrib.postgres.fields import ArrayField, JSONField
+from django.contrib.postgres.fields import ArrayField
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 
 
 # Imports from other dependencies.
-from uuslug import uuslug
+from civic_utils.models import CivicBaseModel
+from civic_utils.models import CommonIdentifiersMixin
+from civic_utils.models import UUIDMixin
 
 
 # Imports from politico-civic-entity.
-from entity.fields import CountryField, GenderField, RaceField, StateField
-from entity.models.base import CivicBaseModel
-from entity.models.base import CommonIdentifiersMixin
-from entity.models.base import NaturalKeyMixin
+from entity.fields import CountryField
+from entity.fields import GenderField
+from entity.fields import RaceField
+from entity.fields import StateField
 
 
-class Person(CommonIdentifiersMixin, NaturalKeyMixin, CivicBaseModel):
+class Person(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
     """A real human being.🎵
 
     Generally follows the Popolo spec:
@@ -27,22 +30,7 @@ class Person(CommonIdentifiersMixin, NaturalKeyMixin, CivicBaseModel):
     natural_key_fields = ['uid']
     slug_prefix = 'person'
     slug_base_field = 'full_name'
-
-    # id = models.UUIDField(
-    #     primary_key=True,
-    #     default=uuid.uuid4,
-    #     editable=False
-    # )
-
-    # uid = models.CharField(
-    #     max_length=500,
-    #     editable=False,
-    #     blank=True
-    # )
-
-    # slug = models.SlugField(
-    #     blank=True, max_length=255, unique=True, editable=False
-    # )
+    default_serializer = 'entity.serializers.PersonSerializer'
 
     last_name = models.CharField(max_length=200)
     first_name = models.CharField(max_length=100, null=True, blank=True)
@@ -84,9 +72,6 @@ class Person(CommonIdentifiersMixin, NaturalKeyMixin, CivicBaseModel):
         help_text="External web links, comma-separated."
     )
 
-    # created = models.DateTimeField(auto_now_add=True, editable=False)
-    # updated = models.DateTimeField(auto_now=True, editable=False)
-
     def save(self, *args, **kwargs):
         """
         **uid**: :code:`person:{slug}`
@@ -101,15 +86,6 @@ class Person(CommonIdentifiersMixin, NaturalKeyMixin, CivicBaseModel):
                 '{}'.format(' ' + self.suffix if self.suffix else '')
             )
 
-        # self.slug = uuslug(
-        #     self.full_name,
-        #     instance=self,
-        #     max_length=100,
-        #     separator='-',
-        #     start_no=2
-        # )
-        # if not self.uid:
-        #     self.uid = 'person:{}'.format(self.slug)
         self.generate_common_identifiers()
 
         super(Person, self).save(*args, **kwargs)
