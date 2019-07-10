@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'civic_utils',
     'entity',
 ]
 
@@ -92,12 +93,40 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+####################
+# Civic settings. #
+##################
+
+
 #########################
-# entity settings
+# politico-civic-utils #
+#######################
+
+CIVIC_UTILS_AWS_ACCESS_KEY_ID = os.getenv('CIVIC_UTILS_AWS_ACCESS_KEY_ID', '')
+
+CIVIC_UTILS_AWS_SECRET_ACCESS_KEY = os.getenv(
+    'CIVIC_UTILS_AWS_SECRET_ACCESS_KEY',
+    ''
+)
+
+CIVIC_UTILS_AWS_S3_BUCKET = os.getenv('CIVIC_UTILS_AWS_S3_BUCKET', '')
+
+CIVIC_UTILS_FIXTURE_ROOT = os.getenv('CIVIC_UTILS_FIXTURE_ROOT', '')
+
+
+##########################
+# politico-civic-entity #
+########################
 
 ENTITY_SECRET_KEY = ''
+
 ENTITY_AWS_ACCESS_KEY_ID = ''
+
 ENTITY_AWS_SECRET_ACCESS_KEY = ''
+
 ENTITY_AWS_S3_BUCKET = ''
+
 ENTITY_CLOUDFRONT_ALTERNATE_DOMAIN = ''
+
 ENTITY_S3_UPLOAD_ROOT = ''
