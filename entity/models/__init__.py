@@ -1,4 +1,5 @@
 # flake8: noqa
+# Imports from entity.
 from entity.models.image_tag import ImageTag
 from entity.models.organization_classification import (
     OrganizationClassification
