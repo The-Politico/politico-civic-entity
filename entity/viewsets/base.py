@@ -1,6 +1,11 @@
-from entity.conf import settings
-from entity.utils.importers import import_class
+# Imports from other dependencies.
+from civic_utils.utils.importers import import_class
 from rest_framework import viewsets
+
+
+# Imports from entity.
+from entity.conf import settings
+
 
 authentication = import_class(settings.API_AUTHENTICATION_CLASS)
 permission = import_class(settings.API_PERMISSION_CLASS)
