@@ -1,16 +1,23 @@
-from entity.models import Organization
+# Imports from other dependencies.
+from civic_utils.serializers import CommandLineListSerializer
+from civic_utils.serializers import NaturalKeySerializerMixin
 from rest_framework import serializers
 
 
-class OrganizationSerializer(serializers.ModelSerializer):
+# Imports from entity.
+from entity.models import Organization
+
+
+class OrganizationSerializer(NaturalKeySerializerMixin,
+                             CommandLineListSerializer):
     images = serializers.SerializerMethodField()
     classification = serializers.StringRelatedField()
 
     def get_images(self, obj):
         """Object of images serialized by tag name."""
-        return {str(i.tag.name): i.image.url for i in obj.images.all()}
+        return {str(i.tag.name): i.image for i in obj.images.all()}
 
-    class Meta:
+    class Meta(CommandLineListSerializer.Meta):
         model = Organization
         fields = (
             'id',
