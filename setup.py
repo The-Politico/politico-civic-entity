@@ -1,13 +1,38 @@
-from setuptools import find_packages, setup
+# Imports from python.
+import os
+from setuptools import find_packages
+from setuptools import setup
+
+
+# Imports from entity.
+from entity import __version__
+
+
+REPO_URL = 'https://github.com/The-Politico/politico-civic-entity/'
+
+PYPI_VERSION = '.'.join(str(v) for v in __version__)
+
+with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
+    README = readme.read()
+
 
 setup(
     name="politico-civic-entity",
-    version="0.3.1",
-    description="",
-    url="https://github.com/The-Politico/politico-civic-entity",
+    version=PYPI_VERSION,
+    packages=find_packages(exclude=["docs", "tests", "example"]),
+    license="MIT",
+    description=(
+        'Manage political people and organizations, the POLITICO way.'
+    ),
+    long_description=README,
+    long_description_content_type='text/markdown',
+    url=REPO_URL,
+    download_url='{repo_url}archive/{version}.tar.gz'.format(**{
+        'repo_url': REPO_URL,
+        'version': PYPI_VERSION,
+    }),
     author="POLITICO interactive news",
     author_email="interactives@politico.com",
-    license="MIT",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Framework :: Django",
@@ -22,7 +47,6 @@ setup(
         "Topic :: Internet :: WWW/HTTP",
     ],
     keywords="",
-    packages=find_packages(exclude=["docs", "tests", "example"]),
     install_requires=[
         "pycountry",
         "us",
