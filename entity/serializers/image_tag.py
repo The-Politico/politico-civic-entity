@@ -10,4 +10,4 @@ from entity.models import ImageTag
 class ImageTagSerializer(NaturalKeySerializerMixin, CommandLineListSerializer):
     class Meta(CommandLineListSerializer.Meta):
         model = ImageTag
-        fields = '__all__'
+        fields = ('created', 'updated')
