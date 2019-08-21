@@ -8,8 +8,9 @@ from rest_framework import serializers
 from entity.models import Organization
 
 
-class OrganizationSerializer(NaturalKeySerializerMixin,
-                             CommandLineListSerializer):
+class OrganizationSerializer(
+    NaturalKeySerializerMixin, CommandLineListSerializer
+):
     images = serializers.SerializerMethodField()
     classification = serializers.StringRelatedField()
 
@@ -20,20 +21,20 @@ class OrganizationSerializer(NaturalKeySerializerMixin,
     class Meta(CommandLineListSerializer.Meta):
         model = Organization
         fields = (
-            'id',
-            'uid',
-            'slug',
-            'name',
-            'identifiers',
-            'classification',
-            'parent',
-            'national_headquarters',
-            'founding_date',
-            'dissolution_date',
-            'images',
-            'summary',
-            'description',
-            'links',
-            'created',
-            'updated',
+            "id",
+            "uid",
+            "slug",
+            "name",
+            "identifiers",
+            "classification",
+            "parent",
+            "national_headquarters",
+            "founding_date",
+            "dissolution_date",
+            "images",
+            "summary",
+            "description",
+            "links",
+            "created",
+            "updated",
         )

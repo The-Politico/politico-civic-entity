@@ -1,7 +1,3 @@
-# Imports from python.
-# import uuid
-
-
 # Imports from Django.
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.postgres.fields import JSONField
@@ -14,7 +10,7 @@ from civic_utils.models import CommonIdentifiersMixin
 from civic_utils.models import UUIDMixin
 
 
-# Imports from politico-civic-entity.
+# Imports from entity.
 from entity.fields import CountryField
 from entity.fields import GenderField
 from entity.fields import RaceField
@@ -27,10 +23,11 @@ class Person(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
     Generally follows the Popolo spec:
     http://www.popoloproject.com/specs/person.html
     """
-    natural_key_fields = ['uid']
-    slug_prefix = 'person'
-    slug_base_field = 'full_name'
-    default_serializer = 'entity.serializers.PersonSerializer'
+
+    natural_key_fields = ["uid"]
+    uid_prefix = "person"
+    uid_base_field = "full_name"
+    default_serializer = "entity.serializers.PersonSerializer"
 
     last_name = models.CharField(max_length=200)
     first_name = models.CharField(max_length=100, null=True, blank=True)
@@ -42,12 +39,10 @@ class Person(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
 
     gender = GenderField(null=True, blank=True)
     race = RaceField(null=True, blank=True)
-    nationality = CountryField(default='US')
+    nationality = CountryField(default="US")
 
     state_of_residence = StateField(
-        null=True,
-        blank=True,
-        help_text="If U.S. resident."
+        null=True, blank=True, help_text="If U.S. resident."
     )
 
     birth_date = models.DateField(null=True, blank=True)
@@ -57,19 +52,17 @@ class Person(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
         max_length=500,
         null=True,
         blank=True,
-        help_text="A one-line biographical summary."
+        help_text="A one-line biographical summary.",
     )
     description = models.TextField(
-        null=True,
-        blank=True,
-        help_text="A longer-form description."
+        null=True, blank=True, help_text="A longer-form description."
     )
 
     links = ArrayField(
         models.URLField(),
         blank=True,
         null=True,
-        help_text="External web links, comma-separated."
+        help_text="External web links, comma-separated.",
     )
 
     def save(self, *args, **kwargs):
@@ -77,13 +70,13 @@ class Person(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
         **uid**: :code:`person:{slug}`
         """
         if not self.full_name:
-            self.full_name = '{0}{1}{2}'.format(
+            self.full_name = "{0}{1}{2}".format(
                 self.first_name,
-                '{}'.format(
-                    ' ' + self.middle_name + ' ' if self.middle_name else ' ',
+                "{}".format(
+                    " " + self.middle_name + " " if self.middle_name else " "
                 ),
                 self.last_name,
-                '{}'.format(' ' + self.suffix if self.suffix else '')
+                "{}".format(" " + self.suffix if self.suffix else ""),
             )
 
         self.generate_common_identifiers()

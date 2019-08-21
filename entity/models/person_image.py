@@ -13,7 +13,7 @@ from civic_utils.models import CivicBaseModel
 from civic_utils.models import UUIDMixin
 
 
-# Imports from politico-civic-entity.
+# Imports from entity.
 from entity.models.image_tag import ImageTag
 from entity.models.person import Person
 
@@ -24,9 +24,7 @@ def person_image_path(instance, filename):
         "cdn/images/people",
         instance.person.slug,
         "{}-{}{}".format(
-            instance.tag,
-            uuid.uuid4().hex[:6],
-            os.path.splitext(filename)[1]
+            instance.tag, uuid.uuid4().hex[:6], os.path.splitext(filename)[1]
         ),
     )
 
@@ -36,15 +34,14 @@ class PersonImage(UUIDMixin, CivicBaseModel):
 
     Can be serialized by a tag.
     """
-    natural_key_fields = ['person', 'tag']
-    default_serializer = 'entity.serializers.PersonImageSerializer'
+
+    natural_key_fields = ["person", "tag"]
+    default_serializer = "entity.serializers.PersonImageSerializer"
 
     # NOTE: Using UUIDMixin replaced the standard PK with a UUID.
 
     person = models.ForeignKey(
-        Person,
-        related_name="images",
-        on_delete=models.PROTECT
+        Person, related_name="images", on_delete=models.PROTECT
     )
     tag = models.ForeignKey(
         ImageTag,

@@ -10,8 +10,9 @@ class ImageTag(CivicBaseModel):
     """
     Tags represent a type of image, which is used to serialize it.
     """
-    default_serializer = 'entity.serializers.ImageTagSerializer'
-    natural_key_fields = ['name']
+
+    default_serializer = "entity.serializers.ImageTagSerializer"
+    natural_key_fields = ["name"]
 
     name = models.SlugField(unique=True)
 

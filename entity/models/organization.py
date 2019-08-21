@@ -1,6 +1,3 @@
-# Imports from python.
-# import uuid
-
 # Imports from Django.
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.postgres.fields import JSONField
@@ -13,10 +10,10 @@ from civic_utils.models import CommonIdentifiersMixin
 from civic_utils.models import UUIDMixin
 
 
-# Imports from politico-civic-entity.
+# Imports from entity.
 from entity.fields import CountryField
 from entity.models.organization_classification import (
-    OrganizationClassification
+    OrganizationClassification,
 )
 
 
@@ -26,10 +23,11 @@ class Organization(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
     Generally follows the Popolo spec:
     http://www.popoloproject.com/specs/organization.html
     """
-    natural_key_fields = ['uid']
-    slug_prefix = 'organization'
-    slug_base_field = 'name'
-    default_serializer = 'entity.serializers.OrganizationSerializer'
+
+    natural_key_fields = ["uid"]
+    uid_prefix = "organization"
+    uid_base_field = "name"
+    default_serializer = "entity.serializers.OrganizationSerializer"
 
     name = models.CharField(max_length=500)
 
@@ -40,15 +38,15 @@ class Organization(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='organizations'
+        related_name="organizations",
     )
 
     parent = models.ForeignKey(
-        'self',
+        "self",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='children'
+        related_name="children",
     )
 
     national_headquarters = CountryField(default="US")
@@ -60,19 +58,18 @@ class Organization(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
         max_length=500,
         null=True,
         blank=True,
-        help_text="A one-line biographical summary."
+        help_text="A one-line biographical summary.",
     )
     description = models.TextField(
-        null=True,
-        blank=True,
-        help_text="A longer-form description."
+        null=True, blank=True, help_text="A longer-form description."
     )
 
     links = ArrayField(
         models.URLField(),
         blank=True,
         null=True,
-        help_text="External web links, comma-separated.")
+        help_text="External web links, comma-separated.",
+    )
 
     def save(self, *args, **kwargs):
         """

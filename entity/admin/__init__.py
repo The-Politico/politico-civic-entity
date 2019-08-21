@@ -1,8 +1,17 @@
+# Imports from Django.
 from django.contrib import admin
-from entity.models import (ImageTag, Organization, OrganizationClassification,
-                           OrganizationImage, Person, PersonImage)
-from .person import PersonAdmin
-from .organization import OrganizationAdmin
+
+
+# Imports from entity.
+from entity.models import ImageTag
+from entity.models import Organization
+from entity.models import OrganizationClassification
+from entity.models import OrganizationImage
+from entity.models import Person
+from entity.models import PersonImage
+from entity.admin.person import PersonAdmin
+from entity.admin.organization import OrganizationAdmin
+
 
 admin.site.register(ImageTag)
 admin.site.register(Organization, OrganizationAdmin)

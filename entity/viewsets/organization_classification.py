@@ -1,7 +1,7 @@
+# Imports from entity.
 from entity.models import OrganizationClassification
 from entity.serializers import OrganizationClassificationSerializer
-
-from .base import BaseViewSet
+from entity.viewsets.base import BaseViewSet
 
 
 class OrganizationClassificationViewSet(BaseViewSet):

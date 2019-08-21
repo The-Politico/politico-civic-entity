@@ -1,6 +1,10 @@
+# Imports from Django.
+from django.db import models
+
+
+# Imports from other dependencies.
 import pycountry
 import us
-from django.db import models
 
 
 class GenderField(models.CharField):

@@ -3,12 +3,13 @@ from civic_utils.serializers import CommandLineListSerializer
 from civic_utils.serializers import NaturalKeySerializerMixin
 
 
-# Imports from politico-civic-entity.
+# Imports from entity.
 from entity.models import OrganizationClassification
 
 
-class OrganizationClassificationSerializer(NaturalKeySerializerMixin,
-                                           CommandLineListSerializer):
+class OrganizationClassificationSerializer(
+    NaturalKeySerializerMixin, CommandLineListSerializer
+):
     class Meta(CommandLineListSerializer.Meta):
         model = OrganizationClassification
-        fields = '__all__'
+        fields = "__all__"

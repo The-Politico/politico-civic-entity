@@ -1,7 +1,7 @@
+# Imports from entity.
 from entity.models import ImageTag
 from entity.serializers import ImageTagSerializer
-
-from .base import BaseViewSet
+from entity.viewsets.base import BaseViewSet
 
 
 class ImageTagViewSet(BaseViewSet):

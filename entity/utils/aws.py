@@ -1,5 +1,9 @@
-from entity.conf import settings
+# Imports from other dependencies.
 from storages.backends.s3boto3 import S3Boto3Storage
+
+
+# Imports from entity.
+from entity.conf import settings
 
 
 class StorageService(S3Boto3Storage):
@@ -11,6 +15,6 @@ class StorageService(S3Boto3Storage):
     file_overwrite = True
     querystring_auth = False
     object_parameters = {
-        'CacheControl': 'max-age=86400',
-        'ACL': settings.AWS_S3_ACL,
+        "CacheControl": "max-age=86400",
+        "ACL": settings.AWS_S3_ACL,
     }

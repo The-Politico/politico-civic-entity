@@ -8,9 +8,9 @@ from civic_utils.models import CivicBaseModel
 
 class OrganizationClassification(CivicBaseModel):
     default_serializer = (
-        'entity.serializers.OrganizationClassificationSerializer'
+        "entity.serializers.OrganizationClassificationSerializer"
     )
-    natural_key_fields = ['name']
+    natural_key_fields = ["name"]
 
     name = models.CharField(max_length=250, unique=True)
 
