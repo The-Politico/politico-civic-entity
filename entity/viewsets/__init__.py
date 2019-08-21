@@ -1,5 +1,17 @@
 # flake8: noqa
-from .image_tag import ImageTagViewSet
-from .organization_classification import OrganizationClassificationViewSet
-from .organization import OrganizationViewSet
-from .person import PersonViewSet
+
+# Imports from entity.
+from entity.image_tag import ImageTagViewSet
+from entity.organization_classification import (
+    OrganizationClassificationViewSet,
+)
+from entity.organization import OrganizationViewSet
+from entity.person import PersonViewSet
+
+
+__all__ = [
+    "ImageTagViewSet",
+    "OrganizationClassificationViewSet",
+    "OrganizationViewSet",
+    "PersonViewSet",
+]
