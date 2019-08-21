@@ -8,11 +8,11 @@ from setuptools import setup
 from entity import __version__
 
 
-REPO_URL = 'https://github.com/The-Politico/politico-civic-entity/'
+REPO_URL = "https://github.com/The-Politico/politico-civic-entity/"
 
-PYPI_VERSION = '.'.join(str(v) for v in __version__)
+PYPI_VERSION = ".".join(str(v) for v in __version__)
 
-with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
+with open(os.path.join(os.path.dirname(__file__), "README.md")) as readme:
     README = readme.read()
 
 
@@ -22,15 +22,14 @@ setup(
     packages=find_packages(exclude=["docs", "tests", "example"]),
     license="MIT",
     description=(
-        'Manage political people and organizations, the POLITICO way.'
+        "Manage political people and organizations, the POLITICO way."
     ),
     long_description=README,
-    long_description_content_type='text/markdown',
+    long_description_content_type="text/markdown",
     url=REPO_URL,
-    download_url='{repo_url}archive/{version}.tar.gz'.format(**{
-        'repo_url': REPO_URL,
-        'version': PYPI_VERSION,
-    }),
+    download_url="{repo_url}archive/{version}.tar.gz".format(
+        **{"repo_url": REPO_URL, "version": PYPI_VERSION}
+    ),
     author="POLITICO interactive news",
     author_email="interactives@politico.com",
     classifiers=[
@@ -56,7 +55,7 @@ setup(
         "django-storages",
         "boto3",
         "Pillow",
-        "psycopg2",
+        "psycopg2-binary",
         "politico-civic-utils",
     ],
     extras_require={"test": ["pytest"]},

@@ -12,7 +12,7 @@ pytest = "*"
 django = ">=2.2"
 djangorestframework = "*"
 dj-database-url = "*"
-"psycopg2" = "*"
+"psycopg2-binary" = "*"
 entity = {path = "./..",editable = true}
 "boto3" = "*"
 crayons = "*"
