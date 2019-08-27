@@ -3,11 +3,11 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-[pipenv]
-allow_prereleases = true
-
 [requires]
 python_version = "3.6"
+
+[pipenv]
+allow_prereleases = true
 
 [packages]
 django = ">=2.2"
