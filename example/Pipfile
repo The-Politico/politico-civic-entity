@@ -3,21 +3,24 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[pipenv]
+allow_prereleases = true
+
 [requires]
 python_version = "3.6"
 
 [packages]
-pytest = "*"
-"flake8" = "*"
 django = ">=2.2"
 djangorestframework = "*"
 dj-database-url = "*"
 "psycopg2-binary" = "*"
-entity = {path = "./..",editable = true}
 "boto3" = "*"
 crayons = "*"
 progress = "*"
-politico-civic-utils = "*"
+"politico-civic-utils" = "~=1.0a1.dev1"
+entity = {path = "./..",editable = true}
 
 [dev-packages]
 ipython = "*"
+pytest = "*"
+"flake8" = "*"
