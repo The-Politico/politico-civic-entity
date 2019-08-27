@@ -1,3 +1,3 @@
-__version__ = (0, 4, 2)
+__version__ = (1, "0a1", "dev1")
 
 default_app_config = "entity.apps.EntityConfig"
