@@ -53,8 +53,11 @@ class OrganizationImage(UUIDMixin, CivicBaseModel):
         upload_to=person_image_path, storage=StorageService()
     )
 
-    # created = models.DateTimeField(auto_now_add=True, editable=False)
-    # updated = models.DateTimeField(auto_now=True, editable=False)
+    class Meta:
+        unique_together = ("organization", "tag")
+
+    def __str__(self):
+        return "{} {}".format(self.organization.slug, self.tag.name)
 
     def preview(self):
         return format_html(
@@ -62,9 +65,3 @@ class OrganizationImage(UUIDMixin, CivicBaseModel):
             '<img src="{0}" style="max-height:100px; max-width: 300px;">'
             "</a>".format(self.image.url)
         )
-
-    class Meta:
-        unique_together = ("organization", "tag")
-
-    def __str__(self):
-        return "{} {}".format(self.organization.slug, self.tag.name)

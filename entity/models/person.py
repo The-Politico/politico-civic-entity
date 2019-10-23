@@ -65,6 +65,12 @@ class Person(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
         help_text="External web links, comma-separated.",
     )
 
+    class Meta:
+        verbose_name_plural = "People"
+
+    def __str__(self):
+        return self.full_name
+
     def save(self, *args, **kwargs):
         """
         **uid**: :code:`person:{slug}`
@@ -82,9 +88,3 @@ class Person(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
         self.generate_common_identifiers()
 
         super(Person, self).save(*args, **kwargs)
-
-    class Meta:
-        verbose_name_plural = "People"
-
-    def __str__(self):
-        return self.full_name

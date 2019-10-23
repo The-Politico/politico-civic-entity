@@ -71,6 +71,9 @@ class Organization(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
         help_text="External web links, comma-separated.",
     )
 
+    def __str__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         """
         **uid**: :code:`person:{slug}`
@@ -78,6 +81,3 @@ class Organization(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
         self.generate_common_identifiers()
 
         super(Organization, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return self.name
