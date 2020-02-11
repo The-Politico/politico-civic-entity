@@ -17,7 +17,7 @@ dj-database-url = "*"
 "boto3" = "*"
 crayons = "*"
 progress = "*"
-"politico-civic-utils" = "~=1.0a1.dev1"
+"politico-civic-utils" = "~=1.0a2.dev5"
 entity = {path = "./..",editable = true}
 
 [dev-packages]

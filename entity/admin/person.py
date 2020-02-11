@@ -24,6 +24,7 @@ class PersonAdmin(admin.ModelAdmin):
                     "last_name",
                     "suffix",
                     "full_name",
+                    "slug",
                 )
             },
         ),
@@ -43,9 +44,9 @@ class PersonAdmin(admin.ModelAdmin):
             "Descriptions",
             {"fields": ("summary", "description", "identifiers", "links")},
         ),
-        ("Record locators", {"fields": ("id", "uid", "slug")}),
+        ("Record locators", {"fields": ("id", "uid")}),
     )
-    readonly_fields = ("id", "uid", "slug")
+    readonly_fields = ("id", "uid")
 
     search_fields = ("first_name", "last_name")
     ordering = ("last_name",)

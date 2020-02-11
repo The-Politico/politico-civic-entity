@@ -65,6 +65,10 @@ class Person(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
         help_text="External web links, comma-separated.",
     )
 
+    slug = models.SlugField(
+        blank=True, max_length=255, unique=True, editable=True
+    )
+
     class Meta:
         verbose_name_plural = "People"
 
@@ -85,6 +89,6 @@ class Person(CommonIdentifiersMixin, UUIDMixin, CivicBaseModel):
                 "{}".format(" " + self.suffix if self.suffix else ""),
             )
 
-        self.generate_common_identifiers()
+        self.generate_common_identifiers(always_overwrite_slug=False)
 
         super(Person, self).save(*args, **kwargs)
